@@ -12,7 +12,7 @@ export default function GameExperienceLayout({ children }: { children: ReactNode
   useEffect(() => {
     const audioElement = audioRef.current;
     if (audioElement) {
-      audioElement.play().catch(error => console.error("Error playing game experience music:", error));
+      audioElement.play().catch(error => console.warn("Game experience music autoplay was prevented. User interaction might be needed.", error));
     }
     // Cleanup when layout unmounts (e.g. navigating to /login)
     return () => {

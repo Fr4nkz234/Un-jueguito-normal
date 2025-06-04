@@ -26,7 +26,7 @@ export default function JigsawIntroPage() {
   useEffect(() => {
     if (audioRef.current) {
       if (jigsawMusicPlaying) {
-        audioRef.current.play().catch(error => console.error("Error playing Jigsaw music:", error));
+        audioRef.current.play().catch(error => console.warn("Jigsaw music autoplay was prevented. User interaction might be needed.", error));
       } else {
         audioRef.current.pause();
       }
@@ -47,8 +47,8 @@ export default function JigsawIntroPage() {
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 bg-background text-foreground relative">
       <audio ref={audioRef} src="/Saw Theme.mp3" loop preload="auto" />
       {jigsawMusicPlaying && (
-         <div className="absolute top-4 right-4 text-sm text-muted-foreground flex items-center gap-2">
-          <Music size={16} /> (Música de Jigsaw sonando...)
+         <div className="absolute top-4 right-4 text-sm text-muted-foreground flex items-center gap-2 bg-background/50 p-2 rounded-md shadow">
+          <Music size={16} /> <span className="hidden sm:inline">(Música de Jigsaw sonando...)</span>
         </div>
       )}
 

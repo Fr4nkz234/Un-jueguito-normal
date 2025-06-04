@@ -28,7 +28,7 @@ export default function LoginPage() {
   useEffect(() => {
     if (retroAudioRef.current) {
       if (retroMusicPlaying) {
-        retroAudioRef.current.play().catch(error => console.error("Error playing retro music:", error));
+        retroAudioRef.current.play().catch(error => console.warn("Retro music autoplay was prevented. User interaction might be needed.", error));
       } else {
         retroAudioRef.current.pause();
       }
@@ -38,7 +38,7 @@ export default function LoginPage() {
   useEffect(() => {
     if (staticAudioRef.current) {
       if (tvStaticSoundPlaying) {
-        staticAudioRef.current.play().catch(error => console.error("Error playing static sound:", error));
+        staticAudioRef.current.play().catch(error => console.warn("TV static sound autoplay was prevented (should be fine as it's post-interaction):", error));
       } else {
         staticAudioRef.current.pause();
         staticAudioRef.current.currentTime = 0; // Reset for next play
@@ -82,7 +82,7 @@ export default function LoginPage() {
         <div className="relative z-10 text-center">
             <p className="text-4xl font-mono animate-pulse text-slate-200" style={{textShadow: '2px 2px 4px #000000'}}>CONEXIÓN INTERRUMPIDA...</p>
             <p className="text-lg mt-2 text-slate-300" style={{textShadow: '1px 1px 2px #000000'}}>Restableciendo señal...</p>
-            {tvStaticSoundPlaying && <div className="mt-2 text-sm text-muted-foreground">(Sonido de estática de TV activado)</div>}
+            {/* Visual indicator for static sound removed as it's very brief */}
         </div>
       </div>
     );
@@ -94,8 +94,8 @@ export default function LoginPage() {
       <audio ref={staticAudioRef} src="/Estatica tv.mp3" preload="auto" />
 
       {retroMusicPlaying && (
-        <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2">
-          <Music2 size={16} /> (Música de fondo sonando...)
+        <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2 bg-background/50 p-2 rounded-md shadow">
+          <Music2 size={16} /> <span className="hidden sm:inline">(Música de fondo sonando...)</span>
         </div>
       )}
       
