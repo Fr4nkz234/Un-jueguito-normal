@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -24,6 +20,8 @@ body {
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    --success: 145 63% 42%; /* Default success green for light theme */
+    --success-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -67,6 +65,8 @@ body {
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
+    --success: 140 60% 50%; /* A success green for dark theme */
+    --success-foreground: 0 0% 98%;
 
     --border: 180 25% 35%; /* Adjusted border for visibility */
     --input: 180 25% 18%; /* Slightly lighter input background */
@@ -86,6 +86,53 @@ body {
     --sidebar-accent-foreground: 0 0% 95.9%;
     --sidebar-border: 180 25% 15%;
     --sidebar-ring: 274 100% 50%;
+  }
+
+  .jigsaw-theme {
+    --background: 0 0% 8%; /* Near black */
+    --foreground: 0 0% 90%; /* Light grey */
+
+    --card: 0 0% 12%; /* Darker grey for cards */
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 0 70% 40%; /* Deep, slightly desaturated red - darkened slightly */
+    --primary-foreground: 0 0% 95%; /* Off-white */
+
+    --secondary: 0 0% 15%; /* Dark grey, bit lighter than bg */
+    --secondary-foreground: 0 0% 70%; /* Lighter grey */
+
+    --muted: 0 0% 15%; /* Same as secondary */
+    --muted-foreground: 0 0% 50%; /* Mid grey */
+
+    --accent: 0 80% 50%; /* Blood-like red - darkened slightly */
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 90% 45%; /* Intense red - darkened slightly */
+    --destructive-foreground: 0 0% 95%;
+    --success: 120 60% 30%; /* Dark, muted green for Jigsaw success */
+    --success-foreground: 0 0% 90%;
+
+    --border: 0 0% 18%; /* Dark grey border - slightly lighter for visibility */
+    --input: 0 0% 14%; /* Dark input background */
+    --ring: 0 80% 50%; /* Accent red for rings */
+    
+    --chart-1: 0 70% 45%; 
+    --chart-2: 0 60% 35%;
+    --chart-3: 0 50% 25%;
+    --chart-4: 25 70% 40%; 
+    --chart-5: 25 60% 30%;
+    
+    --sidebar-background: 0 0% 10%; 
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 0 80% 50%; 
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 80% 50%;
   }
 }
 

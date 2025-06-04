@@ -104,7 +104,7 @@ export default function NumericalHangmanPage() {
             </pre>
           </div>
 
-          <p className={`text-lg font-semibold min-h-[2.5em] ${gameState === 'won' ? 'text-green-500' : gameState === 'lost' ? 'text-destructive' : 'text-foreground'}`}>
+          <p className={`text-lg font-semibold min-h-[2.5em] ${gameState === 'won' ? 'text-success' : gameState === 'lost' ? 'text-destructive' : 'text-foreground'}`}>
             {feedback}
           </p>
           
