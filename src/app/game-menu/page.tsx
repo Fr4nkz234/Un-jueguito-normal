@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -55,9 +56,12 @@ export default function GameMenuPage() {
       )}
 
       {/* Aquí va jigsaw_small.png */}
-      <div className="absolute bottom-4 right-4 opacity-50">
-        <Film size={48} className="text-muted-foreground animate-pulse" />
-        <p className="text-xs text-muted-foreground text-center">Jigsaw</p>
+      <div className="absolute bottom-4 right-4 opacity-50 flex items-end gap-2">
+        <p className="text-xs text-muted-foreground text-right max-w-[150px]">No te preocupes por mi, solo veo como juegas</p>
+        <div className="text-center">
+          <Film size={48} className="text-muted-foreground animate-pulse" />
+          <p className="text-xs text-muted-foreground">Jigsaw</p>
+        </div>
       </div>
       
       <div className="text-center mb-12">
