@@ -46,7 +46,7 @@ export default function GameMenuPage() {
         <p className="text-xs text-muted-foreground text-right max-w-[150px] self-center pb-2 pr-1">No te preocupes por mi, solo veo como juegas</p>
         <div className="text-center">
           <Image 
-            src="/jigsaw_small.png" 
+            src="/Jigsaw 2.png" 
             alt="Jigsaw pequeño"
             width={48}
             height={64} 
