@@ -38,7 +38,7 @@ export default function JigsawIntroPage() {
       setCurrentSegmentIndex(prev => prev + 1);
       setIsTextComplete(false);
     } else {
-      setJigsawMusicPlaying(false); // Stop music before navigating
+      setJigsawMusicPlaying(false); 
       router.push('/game-menu');
     }
   };
@@ -48,7 +48,7 @@ export default function JigsawIntroPage() {
       <audio ref={audioRef} src="/Saw Theme.mp3" loop preload="auto" />
       {jigsawMusicPlaying && (
          <div className="absolute top-4 right-4 text-sm text-muted-foreground flex items-center gap-2 bg-background/50 p-2 rounded-md shadow">
-          <Music size={16} /> <span className="hidden sm:inline">(Música de Jigsaw sonando...)</span>
+          <Music size={16} /> <span className="hidden sm:inline"></span>
         </div>
       )}
 
