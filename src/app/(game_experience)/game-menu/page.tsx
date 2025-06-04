@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Puzzle, Target, Search } from 'lucide-react'; // Removed Music icon as it's now in layout
+import { Puzzle, Target, Search } from 'lucide-react';
 import Image from 'next/image';
 
 interface GameInfo {
@@ -36,28 +36,24 @@ const games: GameInfo[] = [
 ];
 
 export default function GameMenuPage() {
-  // Audio logic is now handled by the parent (game_experience)/layout.tsx
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
-      {/* Music indicator is now in (game_experience)/layout.tsx */}
-
       <div className="absolute bottom-4 right-4 opacity-80 flex items-end gap-2">
         <p className="text-xs text-muted-foreground text-right max-w-[150px] self-center pb-2 pr-1">No te preocupes por mi, solo veo como juegas</p>
         <div className="text-center">
-          <Image 
-            src="/Jigsaw 2.png" 
+          <Image
+            src="/Jigsaw 2.png"
             alt="Jigsaw pequeño"
-            width={48}
-            height={64} 
+            width={72}
+            height={96}
             className="text-muted-foreground animate-pulse"
             data-ai-hint="horror character"
           />
           <p className="text-xs text-muted-foreground">Jigsaw</p>
         </div>
       </div>
-      
-      <div className="text-center mb-12 pt-12 sm:pt-0"> {/* Added padding top for small screens due to fixed music indicator */}
+
+      <div className="text-center mb-12 pt-12 sm:pt-0">
         <h1 className="text-5xl font-headline mb-4 text-primary">Menú de Juegos</h1>
         <p className="text-lg text-muted-foreground">Elige tu desafío. Que comience el juego.</p>
       </div>
@@ -72,9 +68,8 @@ export default function GameMenuPage() {
             </CardHeader>
             <CardContent className="text-center">
               <Link href={game.href} passHref>
-                <Button 
-                  // onClick to stop music is removed as parent layout handles music
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3" 
+                <Button
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3"
                   aria-label={`Jugar a ${game.title}`}
                 >
                   Jugar
