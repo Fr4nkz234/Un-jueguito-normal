@@ -53,12 +53,12 @@ export default function JigsawIntroPage() {
       )}
 
       <div className="w-full md:w-1/3 flex justify-center items-center mb-8 md:mb-0 md:pr-8">
-        <div className="bg-card p-4 rounded-lg shadow-xl w-64 h-96 md:w-80 md:h-[450px] flex flex-col items-center justify-center text-center border-2 border-primary animate-pulse overflow-hidden">
+        <div className="bg-card p-4 rounded-lg shadow-xl w-72 h-[405px] md:w-80 md:h-[450px] flex flex-col items-center justify-center text-center border-2 border-primary animate-pulse overflow-hidden">
             <Image
-              src="/Jigsaw.png" 
+              src="/Jigsaw.png"
               alt="Imagen de Jigsaw"
-              width={320} 
-              height={450} 
+              width={320}
+              height={450}
               className="object-cover w-full h-full"
               priority
               data-ai-hint="horror character"
@@ -76,8 +76,8 @@ export default function JigsawIntroPage() {
           />
         </div>
         {isTextComplete && (
-          <Button 
-            onClick={handleNextSegment} 
+          <Button
+            onClick={handleNextSegment}
             className="bg-accent hover:bg-accent/80 text-accent-foreground text-lg px-8 py-6 shadow-lg transition-transform transform hover:scale-105"
             aria-label={currentSegmentIndex === introSegments.length - 1 ? "Finalizar introducción" : "Continuar con la introducción"}
           >
