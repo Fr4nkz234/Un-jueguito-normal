@@ -1,11 +1,12 @@
+
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import TypewriterText from '@/components/typewriter-text';
-import Image from 'next/image'; // Using next/image for potential optimization if user later provides actual image
-import { Film, Music } from 'lucide-react';
+import Image from 'next/image';
+import { Music } from 'lucide-react';
 
 const introSegments = [
   "Hola, Adrian. Quiero jugar un juego.",
@@ -20,12 +21,15 @@ export default function JigsawIntroPage() {
   const [isTextComplete, setIsTextComplete] = useState(false);
   const [jigsawMusicPlaying, setJigsawMusicPlaying] = useState(true);
   const router = useRouter();
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (jigsawMusicPlaying) {
-      console.log("Jigsaw music playing...");
-    } else {
-      console.log("Jigsaw music stopped.");
+    if (audioRef.current) {
+      if (jigsawMusicPlaying) {
+        audioRef.current.play().catch(error => console.error("Error playing Jigsaw music:", error));
+      } else {
+        audioRef.current.pause();
+      }
     }
   }, [jigsawMusicPlaying]);
 
@@ -34,14 +38,14 @@ export default function JigsawIntroPage() {
       setCurrentSegmentIndex(prev => prev + 1);
       setIsTextComplete(false);
     } else {
-      setJigsawMusicPlaying(false);
+      setJigsawMusicPlaying(false); // Stop music before navigating
       router.push('/game-menu');
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 bg-background text-foreground relative">
-      {/* Aquí se reproduce jigsaw_music.mp3 */}
+      <audio ref={audioRef} src="/jigsaw_music.mp3" loop preload="auto" />
       {jigsawMusicPlaying && (
          <div className="absolute top-4 right-4 text-sm text-muted-foreground flex items-center gap-2">
           <Music size={16} /> (Música de Jigsaw sonando...)
@@ -49,11 +53,15 @@ export default function JigsawIntroPage() {
       )}
 
       <div className="w-full md:w-1/3 flex justify-center items-center mb-8 md:mb-0 md:pr-8">
-        {/* Aquí va jigsaw.png */}
-        <div className="bg-card p-4 rounded-lg shadow-xl w-64 h-96 md:w-80 md:h-[450px] flex flex-col items-center justify-center text-center border-2 border-primary animate-pulse">
-            <Film size={128} className="text-destructive mb-4" />
-            <p className="text-muted-foreground font-mono">jigsaw.png</p>
-            <p className="text-sm text-muted-foreground">(Imagen de Jigsaw aquí)</p>
+        <div className="bg-card p-4 rounded-lg shadow-xl w-64 h-96 md:w-80 md:h-[450px] flex flex-col items-center justify-center text-center border-2 border-primary animate-pulse overflow-hidden">
+            <Image
+              src="/jigsaw.png" // Assumes jigsaw.png is in public folder
+              alt="Imagen de Jigsaw"
+              width={320} // Adjust to your image's aspect ratio
+              height={450} // Adjust to your image's aspect ratio
+              className="object-cover w-full h-full"
+              priority
+            />
         </div>
       </div>
 

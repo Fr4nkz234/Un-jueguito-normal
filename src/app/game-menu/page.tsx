@@ -4,8 +4,9 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Puzzle, Target, Search, Music, Film } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Puzzle, Target, Search, Music } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
 interface GameInfo {
   title: string;
@@ -37,29 +38,44 @@ const games: GameInfo[] = [
 
 export default function GameMenuPage() {
   const [retroMusicPlaying, setRetroMusicPlaying] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (retroMusicPlaying) {
-      console.log("Retro music playing in game menu...");
+    if (audioRef.current) {
+      if (retroMusicPlaying) {
+        audioRef.current.play().catch(error => console.error("Error playing retro music in menu:", error));
+      } else {
+        audioRef.current.pause();
+      }
     }
-    // No cleanup to stop music, as it's "en bucle"
+    // Cleanup function to pause music when component unmounts or retroMusicPlaying changes to false
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
   }, [retroMusicPlaying]);
 
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
-      {/* Aquí se reproduce musica_retro.mp3 */}
+      <audio ref={audioRef} src="/musica_retro.mp3" loop preload="auto" />
       {retroMusicPlaying && (
         <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2">
           <Music size={16} /> (Música retro sonando...)
         </div>
       )}
 
-      {/* Aquí va jigsaw_small.png */}
-      <div className="absolute bottom-4 right-4 opacity-50 flex items-end gap-2">
-        <p className="text-xs text-muted-foreground text-right max-w-[150px]">No te preocupes por mi, solo veo como juegas</p>
+      <div className="absolute bottom-4 right-4 opacity-80 flex items-end gap-2">
+        <p className="text-xs text-muted-foreground text-right max-w-[150px] self-center pb-2 pr-1">No te preocupes por mi, solo veo como juegas</p>
         <div className="text-center">
-          <Film size={48} className="text-muted-foreground animate-pulse" />
+          <Image 
+            src="/jigsaw_small.png" // Assumes jigsaw_small.png is in public folder
+            alt="Jigsaw pequeño"
+            width={48}
+            height={64} // Assuming a portrait-like small image
+            className="text-muted-foreground animate-pulse"
+          />
           <p className="text-xs text-muted-foreground">Jigsaw</p>
         </div>
       </div>
@@ -79,7 +95,11 @@ export default function GameMenuPage() {
             </CardHeader>
             <CardContent className="text-center">
               <Link href={game.href} passHref>
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3" aria-label={`Jugar a ${game.title}`}>
+                <Button 
+                  onClick={() => setRetroMusicPlaying(false)} // Stop menu music when navigating to a game
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3" 
+                  aria-label={`Jugar a ${game.title}`}
+                >
                   Jugar
                 </Button>
               </Link>

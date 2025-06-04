@@ -1,12 +1,14 @@
+
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Eye, EyeOff, Music2, Tv2 } from 'lucide-react';
+import { Eye, EyeOff, Music2 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -19,21 +21,28 @@ export default function LoginPage() {
   const [retroMusicPlaying, setRetroMusicPlaying] = useState(true);
   const [tvStaticSoundPlaying, setTvStaticSoundPlaying] = useState(false);
 
+  const retroAudioRef = useRef<HTMLAudioElement>(null);
+  const staticAudioRef = useRef<HTMLAudioElement>(null);
   const router = useRouter();
 
   useEffect(() => {
-    if (retroMusicPlaying) {
-      console.log("Retro music playing...");
-    } else {
-      console.log("Retro music stopped.");
+    if (retroAudioRef.current) {
+      if (retroMusicPlaying) {
+        retroAudioRef.current.play().catch(error => console.error("Error playing retro music:", error));
+      } else {
+        retroAudioRef.current.pause();
+      }
     }
   }, [retroMusicPlaying]);
 
   useEffect(() => {
-    if (tvStaticSoundPlaying) {
-      console.log("TV static sound playing...");
-    } else {
-      console.log("TV static sound stopped.");
+    if (staticAudioRef.current) {
+      if (tvStaticSoundPlaying) {
+        staticAudioRef.current.play().catch(error => console.error("Error playing static sound:", error));
+      } else {
+        staticAudioRef.current.pause();
+        staticAudioRef.current.currentTime = 0; // Reset for next play
+      }
     }
   }, [tvStaticSoundPlaying]);
 
@@ -51,7 +60,7 @@ export default function LoginPage() {
         setShowStatic(false);
         setTvStaticSoundPlaying(false);
         router.push('/jigsaw-intro');
-      }, 3000); // Show static for 3 seconds
+      }, 3000); 
     } else {
       setError('Usuario o contraseña incorrectos.');
       setIsLoggingIn(false);
@@ -60,20 +69,29 @@ export default function LoginPage() {
 
   if (showStatic) {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 text-white p-4">
-        {/* Aquí va tv_static_animation.gif o tv_static.png */}
-        <Tv2 className="w-32 h-32 mb-4 animate-pulse text-accent" />
-        <p className="text-4xl font-mono animate-pulse">CONEXIÓN INTERRUMPIDA...</p>
-        <p className="text-lg mt-2">Restableciendo señal...</p>
-        {/* Aquí se reproduce static_tv.mp3 */}
-        {tvStaticSoundPlaying && <div className="mt-2 text-sm text-muted-foreground">(Sonido de estática de TV activado)</div>}
+      <div className="fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center z-50 text-white p-4 overflow-hidden">
+        <Image 
+            src="/tv_static_animation.gif" // Assumes tv_static_animation.gif or tv_static.png is in public folder
+            alt="TV Static Animation"
+            layout="fill" // Fills the container
+            objectFit="cover" // Cover the entire screen
+            className="opacity-70 animate-pulse"
+            priority
+        />
+        <div className="relative z-10 text-center">
+            <p className="text-4xl font-mono animate-pulse text-slate-200" style={{textShadow: '2px 2px 4px #000000'}}>CONEXIÓN INTERRUMPIDA...</p>
+            <p className="text-lg mt-2 text-slate-300" style={{textShadow: '1px 1px 2px #000000'}}>Restableciendo señal...</p>
+            {tvStaticSoundPlaying && <div className="mt-2 text-sm text-muted-foreground">(Sonido de estática de TV activado)</div>}
+        </div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Aquí se reproduce musica_retro.mp3 */}
+      <audio ref={retroAudioRef} src="/musica_retro.mp3" loop preload="auto" />
+      <audio ref={staticAudioRef} src="/static_tv.mp3" preload="auto" />
+
       {retroMusicPlaying && (
         <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2">
           <Music2 size={16} /> (Música retro de videojuego sonando...)
