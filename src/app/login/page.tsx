@@ -91,7 +91,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
       <audio ref={retroAudioRef} src="/Musica de fondo.mp3" loop preload="auto" />
-      <audio ref={staticAudioRef} src="/static_tv.mp3" preload="auto" />
+      <audio ref={staticAudioRef} src="/Estatica tv.mp3" preload="auto" />
 
       {retroMusicPlaying && (
         <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2">
