@@ -45,7 +45,7 @@ export default function JigsawIntroPage() {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center p-4 md:p-8 bg-background text-foreground relative">
-      <audio ref={audioRef} src="/jigsaw_music.mp3" loop preload="auto" />
+      <audio ref={audioRef} src="/Saw Theme.mp3" loop preload="auto" />
       {jigsawMusicPlaying && (
          <div className="absolute top-4 right-4 text-sm text-muted-foreground flex items-center gap-2">
           <Music size={16} /> (Música de Jigsaw sonando...)
@@ -55,12 +55,13 @@ export default function JigsawIntroPage() {
       <div className="w-full md:w-1/3 flex justify-center items-center mb-8 md:mb-0 md:pr-8">
         <div className="bg-card p-4 rounded-lg shadow-xl w-64 h-96 md:w-80 md:h-[450px] flex flex-col items-center justify-center text-center border-2 border-primary animate-pulse overflow-hidden">
             <Image
-              src="/jigsaw.png" // Assumes jigsaw.png is in public folder
+              src="/Jigsaw.png" 
               alt="Imagen de Jigsaw"
-              width={320} // Adjust to your image's aspect ratio
-              height={450} // Adjust to your image's aspect ratio
+              width={320} 
+              height={450} 
               className="object-cover w-full h-full"
               priority
+              data-ai-hint="horror character"
             />
         </div>
       </div>

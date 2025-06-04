@@ -71,12 +71,13 @@ export default function LoginPage() {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center z-50 text-white p-4 overflow-hidden">
         <Image 
-            src="/tv_static_animation.gif" // Assumes tv_static_animation.gif or tv_static.png is in public folder
-            alt="TV Static Animation"
-            layout="fill" // Fills the container
-            objectFit="cover" // Cover the entire screen
-            className="opacity-70 animate-pulse"
+            src="/Estatica.jpg" 
+            alt="TV Static"
+            layout="fill" 
+            objectFit="cover" 
+            className="opacity-70"
             priority
+            data-ai-hint="television static"
         />
         <div className="relative z-10 text-center">
             <p className="text-4xl font-mono animate-pulse text-slate-200" style={{textShadow: '2px 2px 4px #000000'}}>CONEXIÓN INTERRUMPIDA...</p>
@@ -89,12 +90,12 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      <audio ref={retroAudioRef} src="/musica_retro.mp3" loop preload="auto" />
+      <audio ref={retroAudioRef} src="/Musica de fondo.mp3" loop preload="auto" />
       <audio ref={staticAudioRef} src="/static_tv.mp3" preload="auto" />
 
       {retroMusicPlaying && (
         <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2">
-          <Music2 size={16} /> (Música retro de videojuego sonando...)
+          <Music2 size={16} /> (Música de fondo sonando...)
         </div>
       )}
       

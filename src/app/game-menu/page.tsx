@@ -48,7 +48,6 @@ export default function GameMenuPage() {
         audioRef.current.pause();
       }
     }
-    // Cleanup function to pause music when component unmounts or retroMusicPlaying changes to false
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -59,10 +58,10 @@ export default function GameMenuPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
-      <audio ref={audioRef} src="/musica_retro.mp3" loop preload="auto" />
+      <audio ref={audioRef} src="/Musica de fondo.mp3" loop preload="auto" />
       {retroMusicPlaying && (
         <div className="absolute top-4 left-4 text-sm text-muted-foreground flex items-center gap-2">
-          <Music size={16} /> (Música retro sonando...)
+          <Music size={16} /> (Música de fondo sonando...)
         </div>
       )}
 
@@ -70,11 +69,12 @@ export default function GameMenuPage() {
         <p className="text-xs text-muted-foreground text-right max-w-[150px] self-center pb-2 pr-1">No te preocupes por mi, solo veo como juegas</p>
         <div className="text-center">
           <Image 
-            src="/jigsaw_small.png" // Assumes jigsaw_small.png is in public folder
+            src="/jigsaw_small.png" 
             alt="Jigsaw pequeño"
             width={48}
-            height={64} // Assuming a portrait-like small image
+            height={64} 
             className="text-muted-foreground animate-pulse"
+            data-ai-hint="horror character"
           />
           <p className="text-xs text-muted-foreground">Jigsaw</p>
         </div>
@@ -96,7 +96,7 @@ export default function GameMenuPage() {
             <CardContent className="text-center">
               <Link href={game.href} passHref>
                 <Button 
-                  onClick={() => setRetroMusicPlaying(false)} // Stop menu music when navigating to a game
+                  onClick={() => setRetroMusicPlaying(false)} 
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3" 
                   aria-label={`Jugar a ${game.title}`}
                 >
