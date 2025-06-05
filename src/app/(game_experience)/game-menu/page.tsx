@@ -2,6 +2,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image'; // Added import
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Puzzle, Target, Search } from 'lucide-react';
@@ -37,8 +38,6 @@ const games: GameInfo[] = [
 export default function GameMenuPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
-      {/* Jigsaw image and text removed from here */}
-
       <div className="text-center mb-12 pt-12 sm:pt-0">
         <h1 className="text-5xl font-headline mb-4 text-primary">Menú de Juegos</h1>
         <p className="text-lg text-muted-foreground">Elige tu desafío. Que comience el juego.</p>
@@ -65,6 +64,23 @@ export default function GameMenuPage() {
           </Card>
         ))}
       </div>
+
+      {/* Added Jigsaw image and text back here */}
+      <div className="absolute bottom-4 right-4 opacity-80 flex items-end gap-2 z-10">
+        <p className="text-xs text-muted-foreground text-right max-w-[150px] self-center pb-2 pr-1">No te preocupes por mi, solo veo como juegas</p>
+        <div className="text-center">
+          <Image
+            src="/Jigsaw 2.png"
+            alt="Jigsaw pequeño"
+            width={72}
+            height={96}
+            className="text-muted-foreground animate-pulse"
+            data-ai-hint="horror character"
+          />
+          <p className="text-xs text-muted-foreground">Jigsaw</p>
+        </div>
+      </div>
+      
        <footer className="absolute bottom-2 text-xs text-muted-foreground/50">
         Game Chamber - Desafía tus límites
       </footer>
