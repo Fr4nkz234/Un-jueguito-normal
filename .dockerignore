@@ -1,0 +1,22 @@
+
+.git
+.gitignore
+node_modules
+.next
+npm-debug.log
+Dockerfile
+.dockerignore
+*.log
+# Firebase Studio/IDX specific files if they exist and are not needed in the container
+.idx/
+.firebase/
+firebase.json
+database.rules.json
+storage.rules
+firestore.rules
+firestore.indexes.json
+# IDE specific folders
+.vscode/
+# OS specific files
+.DS_Store
+Thumbs.db
