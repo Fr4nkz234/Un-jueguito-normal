@@ -9,11 +9,11 @@ import Image from 'next/image';
 import { Music } from 'lucide-react';
 
 const introSegments = [
-  "Hola, Adrian. Quiero jugar un juego.",
-  "Has vivido una vida de complacencia, sin apreciar los pequeños detalles, los desafíos...",
-  "Hoy, eso cambiará. Te he preparado una serie de pruebas.",
-  "Superarlas no será fácil. Pero si lo logras, quizás aprendas algo valioso.",
-  "Tu tiempo comienza... ahora. ¿Aceptas el reto?",
+  "Hola, Adrián. Nos volvemos a encontrar. Hoy no vengo a cuestionar tus métodos de cómo elegir estudiantes para las exposiciones.",
+  "Verás, Luego de mi fracaso en mi misión de cifrar datos y molestar a la gente, he encontrado el camino de la redención y los caballos, por lo que ya no me dedico a ese tipo de cosas (Por ahora)...",
+  "Lo único que no he podido dejar es hacer a las personas jugar juegos. Y es por eso que hoy te traigo esta aplicación que encargué a mi subordinado desarrollar, contenerizar y hacerle algunas pruebas de seguridad.",
+  "Le dije que te dejara un informe sobre las pruebas por si le quieres echar un vistazo más tarde...",
+  "Es una App sencilla, tiene tres juegos de los cuales puedes elegir el que desees jugar, yo solo me quedaré mirando qué tal lo haces. Ganar o morir, que empiece el juego.",
 ];
 
 export default function JigsawIntroPage() {

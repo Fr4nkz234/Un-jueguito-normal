@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Puzzle, Target, Search } from 'lucide-react';
-import Image from 'next/image';
 
 interface GameInfo {
   title: string;
@@ -38,20 +37,7 @@ const games: GameInfo[] = [
 export default function GameMenuPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
-      <div className="absolute bottom-4 right-4 opacity-80 flex items-end gap-2">
-        <p className="text-xs text-muted-foreground text-right max-w-[150px] self-center pb-2 pr-1">No te preocupes por mi, solo veo como juegas</p>
-        <div className="text-center">
-          <Image
-            src="/Jigsaw 2.png"
-            alt="Jigsaw pequeño"
-            width={72}
-            height={96}
-            className="text-muted-foreground animate-pulse"
-            data-ai-hint="horror character"
-          />
-          <p className="text-xs text-muted-foreground">Jigsaw</p>
-        </div>
-      </div>
+      {/* Jigsaw image and text removed from here */}
 
       <div className="text-center mb-12 pt-12 sm:pt-0">
         <h1 className="text-5xl font-headline mb-4 text-primary">Menú de Juegos</h1>
